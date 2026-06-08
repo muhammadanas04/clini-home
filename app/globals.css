@@ -1,0 +1,295 @@
+@import "tailwindcss";
+
+/* ===== CliniHome AI Design Tokens ===== */
+:root {
+  /* Default: Premium Peaceful White */
+  --bg-dark: #F9F9FB;
+  --bg-surface: #F9F9FB;
+  --bg-card: #FFFFFF;
+  --bg-card-dark: #F4F4F6;
+
+  /* CliniHome Blue Accent */
+  --purple-primary: #0071E3;
+  --purple-light: #3897FD;
+  --purple-glow: rgba(0, 113, 227, 0.06);
+
+  /* Accents */
+  --accent-yellow: #FF9500;
+  --accent-pink: #FF2D55;
+  --accent-blue: #0071E3;
+  --accent-gold: #FFD60A;
+
+  /* Status Colors */
+  --severity-low: #34C759;
+  --severity-med: #FF9500;
+  --severity-high: #FF3B30;
+
+  /* Text Colors */
+  --text-primary: #1C1C1E;
+  --text-secondary: #6E6E73;
+  --text-white: #FFFFFF;
+  --text-muted: #AEAEB2;
+
+  /* Borders & Shadows */
+  --border: #ECEAEF;
+  --shadow-card: 0 4px 18px rgba(0,0,0,0.03);
+  --shadow-dark: 0 6px 24px rgba(0,0,0,0.05);
+  --shadow-purple: 0 4px 18px rgba(0, 113, 227, 0.08);
+
+  /* Fallback Font Families (overridden dynamically) */
+  --font-heading: var(--font-sans), 'Inter', sans-serif;
+  --font-body: var(--font-sans), 'Inter', sans-serif;
+}
+
+/* Apple Sleek Dark Mode (Matte Black & Dark Gray) */
+html.dark {
+  --bg-dark: #000000;
+  --bg-surface: #1C1C1E;
+  --bg-card: #2C2C2E;
+  --bg-card-dark: #121214;
+
+  --text-primary: #FFFFFF;
+  --text-secondary: #8E8E93;
+  --text-white: #FFFFFF;
+  --text-muted: #636366;
+
+  --border: #3A3A3C;
+  --shadow-card: 0 8px 32px rgba(0,0,0,0.5);
+  --shadow-dark: 0 8px 32px rgba(0,0,0,0.7);
+  --shadow-purple: 0 8px 32px rgba(0, 113, 227, 0.25);
+}
+
+/* ===== Base Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Ensure inputs inherit body fonts */
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* ===== Typography ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 2.75rem;
+  font-weight: 800;
+}
+
+h2 {
+  font-size: 1.85rem;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+/* Typography Utility Classes */
+.text-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+
+.text-caption {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.text-body-small {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.95); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 15px rgba(0, 113, 227, 0.1); }
+  50% { box-shadow: 0 0 30px rgba(0, 113, 227, 0.2); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.25s ease-out forwards;
+}
+
+.animate-pop-in {
+  animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animation-delay-100 { animation-delay: 0.1s; }
+.animation-delay-200 { animation-delay: 0.2s; }
+.animation-delay-300 { animation-delay: 0.3s; }
+.animation-delay-400 { animation-delay: 0.4s; }
+
+/* ===== Skeleton Shimmer ===== */
+.skeleton {
+  background: linear-gradient(90deg, #F3F4F6 25%, #E5E7EB 50%, #F3F4F6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--purple-primary);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--purple-light);
+}
+
+/* ===== Apple Style Visual Tweaks ===== */
+.serif-italic {
+  font-family: var(--font-serif), Georgia, serif !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+}
+
+.smooth-transition {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.hover-premium {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.hover-premium:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--shadow-purple) !important;
+  border-color: rgba(0, 113, 227, 0.15) !important;
+}
+
+.glow-point {
+  position: relative;
+}
+
+.glow-point::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--purple-primary);
+  opacity: 0.4;
+  animation: pulse-glow-dot 2s infinite;
+}
+
+@keyframes pulse-glow-dot {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Apply Round Eight (16px) globally to cards and containers */
+.round-eight {
+  border-radius: 16px !important;
+}
+
+/* Utility to override elements style and ensure Apple premium curves */
+.apple-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.apple-card:hover {
+  box-shadow: var(--shadow-dark);
+}
